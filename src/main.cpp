@@ -186,7 +186,7 @@ void dropItem(int path) {
 
 // 플레이어의 선택에 따른 결과를 처리하는 함수
 void processChoice(int choice) {
-    int event = rand() % 3; // 0, 1, 2 중 랜덤 이벤트 선택
+    int event = rand() % 4; // 0, 1, 2, 3 중 랜덤 이벤트 선택 -> 선택지가 4개인 3번째 길을 고려하여 수정
     if (choice == 1) {
         // 첫 번째 길: 미노타우르스, 멧돼지, 보물상자
         if (event == 0) {
@@ -194,28 +194,28 @@ void processChoice(int choice) {
             cout << "도끼를 든 미노타우르스가 돌진해옵니다!\n";
             cout << "전투를 시작합니다\n";
         } else if (event == 1) {
-            displayBoarArt();
-            cout << "야생 멧돼지가 돌진해옵니다!\n";
-            cout << "전투를 시작합니다\n";
-        } else {
             displayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
             dropItem(1); // 첫 번째 길 아이템 드랍
+        } else {
+            displayBoarArt();//보물상자 나올확률이 25퍼가 되도록하였고 야생멧돼지가 나올확률이 50퍼가 되도록함
+            cout << "야생 멧돼지가 돌진해옵니다!\n";
+            cout << "전투를 시작합니다\n";
         }
     } else if (choice == 2) {
         // 두 번째 길: 해골전사, 마녀, 보물상자
         if (event == 0) {
-            displaySkeletonWarriorArt();
-            cout << "해골전사가 나타났습니다!\n";
-            cout << "전투를 시작합니다\n";
-        } else if (event == 1) {
             displayWitchArt();
             cout << "마녀가 당신을 노려봅니다!\n";
             cout << "전투를 시작합니다\n";
-        } else {
+        } else if (event == 1) {
             displayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
             dropItem(2); // 두 번째 길 아이템 드랍
+        } else {
+            displaySkeletonWarriorArt();//해골전사가 나올확률이 25퍼가 되도록하였고 야생멧돼지가 나올확률이 50퍼가 되도록함
+            cout << "해골전사가 나타났습니다!\n";
+            cout << "전투를 시작합니다\n";
         }
     } else if (choice == 3) {
         // 세 번째 길: 고블린 전사, 궁수, 마법사, 보물상자
@@ -232,7 +232,7 @@ void processChoice(int choice) {
             cout << "고블린 마법사가 주문을 외우고 있습니다!\n";
             cout << "전투를 시작합니다\n";
         } else {
-            displayTreasureArt();
+            displayTreasureArt();//굳이 순서안바꿔도 각각 25퍼센트라 괜찮음
             cout << "보물상자를 발견했습니다!\n";
             dropItem(3); // 세 번째 길 아이템 드랍
         }
