@@ -16,6 +16,39 @@ void displayAsciiArt() {
     cout << "      '-........-'" << endl;
 }
 
+// 미노타우르스의 ASCII 아트를 출력하는 함수
+void displayMinotaurArt() {
+    cout << "       __     __         " << endl;
+    cout << "      /  \\~~~/  \\       " << endl;
+    cout << "    ,----(     )----.    " << endl;
+    cout << "   /      \\_^_/      \\  " << endl;
+    cout << "  |        | |        |  " << endl;
+    cout << "   \\    __/   \\__    /  " << endl;
+    cout << "    '--/         \\--'   " << endl;
+    cout << "      |  AXE!!!   |      " << endl;
+    cout << "      \\___________/      " << endl;
+}
+
+
+// 멧돼지의 ASCII 아트를 출력하는 함수
+void displayBoarArt() {
+    cout << "      /\\   ___   /\\     " << endl;
+    cout << "     //\\\\ (o o) //\\\\   " << endl;
+    cout << "    ||   \\\\_^_//   ||   " << endl;
+    cout << "     \\\\    '-'    //    " << endl;
+    cout << "      '-.........-'      " << endl;
+}
+
+// 보물상자의 ASCII 아트를 출력하는 함수
+void displayTreasureArt() {
+    cout << "      ___________       " << endl;
+    cout << "     /           \\      " << endl;
+    cout << "    / $$$$$$$$$$  \\     " << endl;
+    cout << "   | $$$$$$$$$$$$ |     " << endl;
+    cout << "   | $$$$$$$$$$$$ |     " << endl;
+    cout << "    \\_____[T]____/      " << endl;
+}
+
 // 소개 스토리를 출력하는 함수
 void displayIntro() {
     cout << "한밤중, 코딩에 집중하던 철수는 졸음에 못 이겨 그만 책상에 고꾸라져 잠이 들고 말았습니다.\n";
@@ -42,14 +75,17 @@ void presentChoices() {
 void processChoice(int choice) {
     switch (choice) {
         case 1:
+            displayMinotaurArt();
             cout << "도끼를 든 미노타우르스가 돌진해옵니다!\n";
             cout << "전투를 시작합니다\n";
             break;
         case 2:
+            displayBoarArt();
             cout << "야생 멧돼지가 돌진해옵니다!\n";
             cout << "전투를 시작합니다\n";
             break;
         case 3:
+            displayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
             break;
         default:
