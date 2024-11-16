@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 // 던전에서 잠든 철수의 ASCII 아트를 출력하는 함수
@@ -49,8 +51,79 @@ void displayTreasureArt() {
     cout << "    \\_____[T]____/      " << endl;
 }
 
+// 해골전사의 ASCII 아트를 출력하는 함수
+void displaySkeletonWarriorArt() {
+    cout << "      .-.          " << endl;
+    cout << "     (o.o)         " << endl;
+    cout << "      |=|          " << endl;
+    cout << "     __|__         " << endl;
+    cout << "   //.=|=.\\\\       " << endl;
+    cout << "  // .=|=. \\\\      " << endl;
+    cout << "  \\\\ .=|=. //      " << endl;
+    cout << "   \\\\(_=_)//       " << endl;
+    cout << "    (:| |:)        " << endl;
+    cout << "     || ||         " << endl;
+    cout << "     () ()         " << endl;
+}
+
+// 마녀의 ASCII 아트를 출력하는 함수
+void displayWitchArt() {
+    cout << "        ______        " << endl;
+    cout << "     .-'      `-.     " << endl;
+    cout << "    /    .--.    \\    " << endl;
+    cout << "   /  _.-'    '-._\\   " << endl;
+    cout << "   | (_ o      o _) | " << endl;
+    cout << "    \\   '._.--._.'  / " << endl;
+    cout << "     '-.          .-'  " << endl;
+    cout << "        `--------`     " << endl;
+}
+
+// 고블린 전사의 ASCII 아트를 출력하는 함수
+void displayGoblinWarriorArt() {
+    cout << "     .----.     " << endl;
+    cout << "    /  o o \\    " << endl;
+    cout << "   |    ^    |   " << endl;
+    cout << "   |  \\___/  |   " << endl;
+    cout << "    \\_______/    " << endl;
+    cout << "     //   \\\\     " << endl;
+    cout << "    ||     ||    " << endl;
+}
+
+
+// 고블린 궁수의 ASCII 아트를 출력하는 함수
+void displayGoblinArcherArt() {
+    cout << "     .----.     " << endl;
+    cout << "    /  o o \\    " << endl;
+    cout << "   |    ^    |   " << endl;
+    cout << "   |  \\___/  |   " << endl;
+    cout << "    \\--| |--/    " << endl;
+    cout << "       | |       " << endl;
+}
+
+// 고블린 마법사의 ASCII 아트를 출력하는 함수
+void displayGoblinMageArt() {
+    cout << "     .----.     " << endl;
+    cout << "    /  o o \\    " << endl;
+    cout << "   |    ^    |   " << endl;
+    cout << "   |  \\___/  |   " << endl;
+    cout << "    \\_-===-_/    " << endl;
+    cout << "     /     \\     " << endl;
+}
+
 // 소개 스토리를 출력하는 함수
 void displayIntro() {
+    cout << "□■■■■■■□□□■□□■■■■■■■□□■□□□□■□□□□■□■□□□□□■□□□□□■□□□□□□□□■□□□□■□□□□□□■■□□□□■□□□■□□□□□□□■□□□□□□□□□□□□■" << endl;
+    cout << "□■■■■■■□□□■□□■■■■■■■□□■□□■■■■■□□■□■□□□□□■□□□□□■□□□□□□□□■□□□□■□□□□■■■■■■□□■□□□■□□□□□□□■□□□■■■■■■□□□■" << endl;
+    cout << "□■□□□□□□□□■□□□□□■□□□□□■□□■■□■■□□■□■□□□□□■□□□□□■□□□□□□□■■□□□□■■■□□■■□□■■□□■□□□■□□□□□□□■■■□□□□□□■□□□■" << endl;
+    cout << "□■□□□□■■■■■□□□□■■□□■■■■□□■□□□■□□■□■□□□□□■□■■■■■□□□□□□■■■■■□□■□□□□■□□□□■□□■□□□■□□□□□□□■□□□□□□□■■□□□■" << endl;
+    cout << "□■□□□□□□□□■□□□■■■■□□□□■□□■□□□■■■■□■□□□□■■□■■■■■□□□□□■■■□■■■□■□□□□■□□□□■□□■■■■■■■■■■■□■□□□□□□□■■□□□■" << endl;
+    cout << "□■■■■■■■■□■□□■■■□■■■□□■□□■□□□■■■■□■□□□□■■■□□□□■□□□□■■□□□□■■□■□□□□■□□□□■□□■■■■■■■□□□□□■□□□□□□□■■□□□■" << endl;
+    cout << "□■■■■■■■□□■□■■■□□□■■□□■□□■□□□■□□■□■□□□■■■■■□□□■□□□□□□■■■■■■■■□□□□■□□□□■□□■□□□□□□□□□□□■□□□□□□■■□□□□■" << endl;
+    cout << "□□□■□□□□□□■□□□□■□□□□□□■□□■■□■■□□■□■□□■■□□■■■□□■□□□□□□□□□□□□□■□□□□■■□□■■□□■□□□□■■■■■■■■□□□□■■■□□□□□■" << endl;
+    cout << "□□□■□□□□□□■□□□□■□□□□□□■□□■■■■■□□■□■□■■□□□□■■□□■□□□□□□□□□□□□□■□□□□■■■■■■□□■□□□□■■□□□□□■□□□■■■□□□□□□■" << endl;
+    cout << "□□□■□□□□□□□□□□□■□□□□□□□□□□□□□□□□■□■□□□□□□□□□□□■□□□□□□□■■■■■■■□□□□□□□□□□□□■□□□□■■□□□□□■□□□■□□□□□□□□■" << endl;
+    cout << "□□□■□□□□□□□□□□□■□□□□□□□□□□□□□□□□■□■□□□□□□□□□□□■□□□□□□□■□□□□□□□□□□□□□□□□□□■□□□□■■□□□□□■□□□□□□□□□□□□■" << endl;
+    cout << "□□□■■■■■■■■□□□□■■■■■■■■□□□□□□□□□■□■□□□□□□□□□□□■□□□□□□□■■■■■■■■□□□□□□□□□□□■□□□□■■■■■■■■□□□□□□□□□□□□■" << endl;
     cout << "한밤중, 코딩에 집중하던 철수는 졸음에 못 이겨 그만 책상에 고꾸라져 잠이 들고 말았습니다.\n";
     cout << "얼마나 시간이 흘렀을까, 깨달아 보니 낯선 돌바닥 위. 주변은 차갑고 축축한 공기로 가득 찼습니다.\n";
     cout << "눈앞엔 고대 유적 같은 돌기둥들이 우뚝 서 있고, 어둠 속에서 흐릿한 불빛이 깜박입니다.\n";
@@ -70,32 +143,86 @@ void presentChoices() {
     cout << "3. 세번째 길로 간다\n";
 }
 
+// 보물상자를 발견했을 때 아이템을 랜덤으로 드랍하는 함수
+void dropItem(int path) {
+    int itemIndex;
+
+    if (path == 1) {
+        // 첫 번째 길 아이템 리스트
+        string items[] = {"피묻은 도끼", "가죽갑옷", "빨간포션"};
+        itemIndex = rand() % 3;
+        cout << "보물상자에서 " << items[itemIndex] << "을(를) 얻었습니다!" << endl;
+    } else if (path == 2) {
+        // 두 번째 길 아이템 리스트
+        string items[] = {"날카로운 철검", "빨간포션", "천갑옷"};
+        itemIndex = rand() % 3;
+        cout << "보물상자에서 " << items[itemIndex] << "을(를) 얻었습니다!" << endl;
+    } else if (path == 3) {
+        // 세 번째 길 아이템 리스트
+        string items[] = {"야만의 몽둥이", "빨간포션"};
+        itemIndex = rand() % 2;
+        cout << "보물상자에서 " << items[itemIndex] << "을(를) 얻었습니다!" << endl;
+    }
+}
+
 // 플레이어의 선택에 따른 결과를 처리하는 함수
-// C++의 switch 문을 사용하여 선택에 따른 결과를 구분
 void processChoice(int choice) {
-    switch (choice) {
-        case 1:
+    int event = rand() % 3; // 0, 1, 2 중 랜덤 이벤트 선택
+    if (choice == 1) {
+        // 첫 번째 길: 미노타우르스, 멧돼지, 보물상자
+        if (event == 0) {
             displayMinotaurArt();
             cout << "도끼를 든 미노타우르스가 돌진해옵니다!\n";
             cout << "전투를 시작합니다\n";
-            break;
-        case 2:
+        } else if (event == 1) {
             displayBoarArt();
             cout << "야생 멧돼지가 돌진해옵니다!\n";
             cout << "전투를 시작합니다\n";
-            break;
-        case 3:
+        } else {
             displayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
-            break;
-        default:
-            cout << "잘못된 선택입니다. 다시 선택해 주세요.\n";
+            dropItem(1); // 첫 번째 길 아이템 드랍
+        }
+    } else if (choice == 2) {
+        // 두 번째 길: 해골전사, 마녀, 보물상자
+        if (event == 0) {
+            displaySkeletonWarriorArt();
+            cout << "해골전사가 나타났습니다!\n";
+            cout << "전투를 시작합니다\n";
+        } else if (event == 1) {
+            displayWitchArt();
+            cout << "마녀가 당신을 노려봅니다!\n";
+            cout << "전투를 시작합니다\n";
+        } else {
+            displayTreasureArt();
+            cout << "보물상자를 발견했습니다.\n";
+            dropItem(2); // 두 번째 길 아이템 드랍
+        }
+    } else if (choice == 3) {
+        // 세 번째 길: 고블린 전사, 궁수, 마법사, 보물상자
+        if (event == 0) {
+            displayGoblinWarriorArt();
+            cout << "고블린 전사가 나타났습니다!\n";
+            cout << "전투를 시작합니다\n";
+        } else if (event == 1) {
+            displayGoblinArcherArt();
+            cout << "고블린 궁수가 당신을 겨누고 있습니다!\n";
+            cout << "전투를 시작합니다\n";
+        }  else if (event == 2) {
+            displayGoblinMageArt();
+            cout << "고블린 마법사가 주문을 외우고 있습니다!\n";
+            cout << "전투를 시작합니다\n";
+        } else {
+            displayTreasureArt();
+            cout << "보물상자를 발견했습니다!\n";
+            dropItem(3); // 세 번째 길 아이템 드랍
+        }
     }
 }
 
 int main() {
     int choice;
-
+    srand(time(0));
     // ASCII 아트와 소개 스토리를 출력합니다
     displayAsciiArt();
     displayIntro();
