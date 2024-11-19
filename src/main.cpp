@@ -4,6 +4,10 @@
 #include <ctime>
 using namespace std;
 
+// 플레이어(철수)의 체력과 공격력
+int playerHealth = 100;
+int playerAttack = 10;
+
 // 던전에서 잠든 철수의 ASCII 아트를 출력하는 함수
 void displayAsciiArt() {
     cout << "        zZZ...        " << endl;
@@ -162,6 +166,30 @@ void presentChoices() {
     cout << "0. 게임종료\n";
 }
 
+// 플레이어와 몬스터의 전투 함수
+void battle(string monsterName, int monsterHealth, int monsterAttack) {
+    cout << monsterName << "과(와) 전투를 시작합니다!\n";
+    while (monsterHealth > 0 && playerHealth > 0) {
+        // 철수의 공격
+        cout << "철수가 " << monsterName << "을(를) 공격합니다! " << monsterName << " 체력 -" << playerAttack << "\n";
+        monsterHealth -= playerAttack;
+
+        if (monsterHealth > 0) {
+            // 몬스터의 공격
+            cout << monsterName << "이(가) 철수를 공격합니다! 철수 체력 -" << monsterAttack << "\n";
+            playerHealth -= monsterAttack;
+        }
+    }
+
+    if (playerHealth <= 0) {
+        cout << "철수가 쓰러졌습니다. 게임 종료.\n";
+        displayDieArt();
+        exit(0);
+    } else {
+        cout << monsterName << "을(를) 물리쳤습니다!\n";
+    }
+}
+
 // 보물상자를 발견했을 때 아이템을 랜덤으로 드랍하는 함수
 void dropItem(int path) {
     int itemIndex;
@@ -193,14 +221,16 @@ void processChoice(int choice) {
             displayMinotaurArt();
             cout << "도끼를 든 미노타우르스가 돌진해옵니다!\n";
             cout << "전투를 시작합니다\n";
+            battle("미노타우르스", 50, 7);
         } else if (event == 1) {
             displayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
             dropItem(1); // 첫 번째 길 아이템 드랍
         } else {
-            displayBoarArt();//보물상자 나올확률이 25퍼가 되도록하였고 야생멧돼지가 나올확률이 50퍼가 되도록함
+            displayBoarArt();
             cout << "야생 멧돼지가 돌진해옵니다!\n";
             cout << "전투를 시작합니다\n";
+            battle("야생 멧돼지", 20, 5);
         }
     } else if (choice == 2) {
         // 두 번째 길: 해골전사, 마녀, 보물상자
@@ -208,14 +238,16 @@ void processChoice(int choice) {
             displayWitchArt();
             cout << "마녀가 당신을 노려봅니다!\n";
             cout << "전투를 시작합니다\n";
+            battle("마녀", 11, 10);
         } else if (event == 1) {
             displayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
             dropItem(2); // 두 번째 길 아이템 드랍
         } else {
-            displaySkeletonWarriorArt();//해골전사가 나올확률이 25퍼가 되도록하였고 야생멧돼지가 나올확률이 50퍼가 되도록함
+            displaySkeletonWarriorArt();
             cout << "해골전사가 나타났습니다!\n";
             cout << "전투를 시작합니다\n";
+            battle("해골 전사", 15, 7);
         }
     } else if (choice == 3) {
         // 세 번째 길: 고블린 전사, 궁수, 마법사, 보물상자
@@ -223,21 +255,25 @@ void processChoice(int choice) {
             displayGoblinWarriorArt();
             cout << "고블린 전사가 나타났습니다!\n";
             cout << "전투를 시작합니다\n";
+            battle("고블린 전사", 20, 5);
         } else if (event == 1) {
             displayGoblinArcherArt();
             cout << "고블린 궁수가 당신을 겨누고 있습니다!\n";
             cout << "전투를 시작합니다\n";
-        }  else if (event == 2) {
+            battle("고블린 궁수", 15, 3);
+        } else if (event == 2) {
             displayGoblinMageArt();
             cout << "고블린 마법사가 주문을 외우고 있습니다!\n";
             cout << "전투를 시작합니다\n";
+            battle("고블린 마법사", 11, 7);
         } else {
-            displayTreasureArt();//굳이 순서안바꿔도 각각 25퍼센트라 괜찮음
-            cout << "보물상자를 발견했습니다!\n";
+            displayTreasureArt();
+            cout << "보물상자를 발견했습니다.\n";
             dropItem(3); // 세 번째 길 아이템 드랍
         }
     }
 }
+
 
 int main() {
     int choice;
