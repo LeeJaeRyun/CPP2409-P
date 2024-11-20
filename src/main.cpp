@@ -169,15 +169,32 @@ void presentChoices() {
 // 플레이어와 몬스터의 전투 함수
 void battle(string monsterName, int monsterHealth, int monsterAttack) {
     cout << monsterName << "과(와) 전투를 시작합니다!\n";
-    while (monsterHealth > 0 && playerHealth > 0) {
-        // 철수의 공격
-        cout << "철수가 " << monsterName << "을(를) 공격합니다! " << monsterName << " 체력 -" << playerAttack << "\n";
-        monsterHealth -= playerAttack;
 
-        if (monsterHealth > 0) {
-            // 몬스터의 공격
-            cout << monsterName << "이(가) 철수를 공격합니다! 철수 체력 -" << monsterAttack << "\n";
-            playerHealth -= monsterAttack;
+    while (monsterHealth > 0 && playerHealth > 0) {
+        cout << "\n철수 체력: " << playerHealth << " / " << "몬스터 체력: " << monsterHealth << "\n";
+        cout << "1. 싸운다\n2. 도망친다\n";
+        cout << "행동을 선택하세요 (1-2): ";
+        int action;
+        cin >> action;
+
+        if (action == 1) {
+            // 싸운다
+            cout << "철수가 " << monsterName << "을(를) 공격합니다! " << monsterName << " 체력 -" << playerAttack << "\n";
+            monsterHealth -= playerAttack;
+
+            if (monsterHealth > 0) {
+                // 몬스터의 공격
+                cout << monsterName << "이(가) 철수를 공격합니다! 철수 체력 -" << monsterAttack << "\n";
+                playerHealth -= monsterAttack;
+            }
+        } else if (action == 2) {
+            // 도망친다
+            playerHealth -= 5; // 도망 시 체력 감소
+            cout << "도망치던 도중, " << monsterName << "이(가) 날린 공격에 스쳐 체력이 5 줄었습니다.\n";
+            cout << "현재 체력: " << playerHealth << "\n";
+            return; // 도망 성공, 전투 종료
+        } else {
+            cout << "잘못된 선택입니다. 다시 입력해주세요.\n";
         }
     }
 
@@ -185,10 +202,12 @@ void battle(string monsterName, int monsterHealth, int monsterAttack) {
         cout << "철수가 쓰러졌습니다. 게임 종료.\n";
         displayDieArt();
         exit(0);
-    } else {
+    } else if (monsterHealth <= 0) {
         cout << monsterName << "을(를) 물리쳤습니다!\n";
+        cout << "남은 체력: " << playerHealth << "\n";
     }
 }
+
 
 // 보물상자를 발견했을 때 아이템을 랜덤으로 드랍하는 함수
 void dropItem(int path) {
