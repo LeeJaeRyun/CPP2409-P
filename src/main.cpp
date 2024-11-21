@@ -2,7 +2,11 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 using namespace std;
+
+// 철수의 가방
+vector<string> playerBag;
 
 // 플레이어(철수)의 체력과 공격력
 int playerHealth = 100;
@@ -164,6 +168,7 @@ void presentChoices() {
     cout << "2. 두번째 길로 간다\n";
     cout << "3. 세번째 길로 간다\n";
     cout << "0. 게임종료\n";
+    cout << "9. 가방을 열다\n";
 }
 
 // 플레이어와 몬스터의 전투 함수
@@ -210,26 +215,45 @@ void battle(string monsterName, int monsterHealth, int monsterAttack) {
 
 
 // 보물상자를 발견했을 때 아이템을 랜덤으로 드랍하는 함수
+// 보물상자를 발견했을 때 아이템을 랜덤으로 드랍하는 함수
 void dropItem(int path) {
     int itemIndex;
+    string item;
 
     if (path == 1) {
         // 첫 번째 길 아이템 리스트
         string items[] = {"피묻은 도끼", "가죽갑옷", "빨간포션"};
         itemIndex = rand() % 3;
-        cout << "보물상자에서 " << items[itemIndex] << "을(를) 얻었습니다!" << endl;
+        item = items[itemIndex];
     } else if (path == 2) {
         // 두 번째 길 아이템 리스트
         string items[] = {"날카로운 철검", "빨간포션", "천갑옷"};
         itemIndex = rand() % 3;
-        cout << "보물상자에서 " << items[itemIndex] << "을(를) 얻었습니다!" << endl;
+        item = items[itemIndex];
     } else if (path == 3) {
         // 세 번째 길 아이템 리스트
         string items[] = {"야만의 몽둥이", "빨간포션"};
         itemIndex = rand() % 2;
-        cout << "보물상자에서 " << items[itemIndex] << "을(를) 얻었습니다!" << endl;
+        item = items[itemIndex];
+    }
+
+    // 아이템 획득 및 가방에 추가
+    cout << "보물상자에서 " << item << "을(를) 얻었습니다!\n";
+    playerBag.push_back(item);
+}
+
+// 가방 내용을 출력하는 함수
+void viewBag() {
+    if (playerBag.empty()) {
+        cout << "가방이 비어 있습니다.\n";
+    } else {
+        cout << "철수의 가방 내용:\n";
+        for (int i = 0; i < playerBag.size(); i++) {
+            cout << i + 1 << ". " << playerBag[i] << "\n";
+        }
     }
 }
+
 
 // 플레이어의 선택에 따른 결과를 처리하는 함수
 void processChoice(int choice) {
@@ -312,6 +336,11 @@ int main() {
             displayDieArt();
             cout << "게임을 종료합니다. 철수는 당신이 끝까지 지켜봐주지 않아 고독사했습니다." << endl;
             break; // 0을 선택하면 게임 종료
+        }
+
+        if (choice == 9) { // 9번 명령어로 가방 보기
+            viewBag();
+            continue;
         }
 
         // 선택이 유효한지 확인
