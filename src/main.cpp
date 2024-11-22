@@ -6,14 +6,14 @@
 using namespace std;
 
 // 철수의 가방
-vector<string> playerBag;
+vector<string> player_bag;
 
 // 플레이어(철수)의 체력과 공격력
-int playerHealth = 100;
-int playerAttack = 10;
+int player_health = 100;
+int player_attack = 10;
 
 // 던전에서 잠든 철수의 ASCII 아트를 출력하는 함수
-void displayAsciiArt() {
+void DisplayAsciiArt() {
     cout << "        zZZ...        " << endl;
     cout << "      .-''''''''-.    " << endl;
     cout << "    .'            '.  " << endl;
@@ -27,7 +27,7 @@ void displayAsciiArt() {
 }
 
 // 미노타우르스의 ASCII 아트를 출력하는 함수
-void displayMinotaurArt() {
+void DisplayMinotaurArt() {
     cout << "       __     __         " << endl;
     cout << "      /  \\~~~/  \\       " << endl;
     cout << "    ,----(     )----.    " << endl;
@@ -39,9 +39,8 @@ void displayMinotaurArt() {
     cout << "      \\___________/      " << endl;
 }
 
-
 // 멧돼지의 ASCII 아트를 출력하는 함수
-void displayBoarArt() {
+void DisplayBoarArt() {
     cout << "      /\\   ___   /\\     " << endl;
     cout << "     //\\\\ (o o) //\\\\   " << endl;
     cout << "    ||   \\\\_^_//   ||   " << endl;
@@ -50,7 +49,7 @@ void displayBoarArt() {
 }
 
 // 보물상자의 ASCII 아트를 출력하는 함수
-void displayTreasureArt() {
+void DisplayTreasureArt() {
     cout << "      ___________       " << endl;
     cout << "     /           \\      " << endl;
     cout << "    / $$$$$$$$$$  \\     " << endl;
@@ -60,7 +59,7 @@ void displayTreasureArt() {
 }
 
 // 해골전사의 ASCII 아트를 출력하는 함수
-void displaySkeletonWarriorArt() {
+void DisplaySkeletonWarriorArt() {
     cout << "      .-.          " << endl;
     cout << "     (o.o)         " << endl;
     cout << "      |=|          " << endl;
@@ -75,7 +74,7 @@ void displaySkeletonWarriorArt() {
 }
 
 // 마녀의 ASCII 아트를 출력하는 함수
-void displayWitchArt() {
+void DisplayWitchArt() {
     cout << "        ______        " << endl;
     cout << "     .-'      `-.     " << endl;
     cout << "    /    .--.    \\    " << endl;
@@ -87,7 +86,7 @@ void displayWitchArt() {
 }
 
 // 고블린 전사의 ASCII 아트를 출력하는 함수
-void displayGoblinWarriorArt() {
+void DisplayGoblinWarriorArt() {
     cout << "     .----.     " << endl;
     cout << "    /  o o \\    " << endl;
     cout << "   |    ^    |   " << endl;
@@ -97,9 +96,8 @@ void displayGoblinWarriorArt() {
     cout << "    ||     ||    " << endl;
 }
 
-
 // 고블린 궁수의 ASCII 아트를 출력하는 함수
-void displayGoblinArcherArt() {
+void DisplayGoblinArcherArt() {
     cout << "     .----.     " << endl;
     cout << "    /  o o \\    " << endl;
     cout << "   |    ^    |   " << endl;
@@ -109,7 +107,7 @@ void displayGoblinArcherArt() {
 }
 
 // 고블린 마법사의 ASCII 아트를 출력하는 함수
-void displayGoblinMageArt() {
+void DisplayGoblinMageArt() {
     cout << "     .----.     " << endl;
     cout << "    /  o o \\    " << endl;
     cout << "   |    ^    |   " << endl;
@@ -118,8 +116,8 @@ void displayGoblinMageArt() {
     cout << "     /     \\     " << endl;
 }
 
-//사망 메시지 출력 함수
-void displayDieArt() {
+// 사망 메시지 출력 함수
+void DisplayDieArt() {
     cout << "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□■□□□□□□□□□□" << endl;
     cout << "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□■□■□□□□□□□□" << endl;
     cout << "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□■□□□□□□□□□□" << endl;
@@ -137,7 +135,7 @@ void displayDieArt() {
 }
 
 // 소개 스토리를 출력하는 함수
-void displayIntro() {
+void DisplayIntro() {
     cout << "□■■■■■■□□□■□□■■■■■■■□□■□□□□■□□□□■□■□□□□□■□□□□□■□□□□□□□□■□□□□■□□□□□□■■□□□□■□□□■□□□□□□□■□□□□□□□□□□□□■" << endl;
     cout << "□■■■■■■□□□■□□■■■■■■■□□■□□■■■■■□□■□■□□□□□■□□□□□■□□□□□□□□■□□□□■□□□□■■■■■■□□■□□□■□□□□□□□■□□□■■■■■■□□□■" << endl;
     cout << "□■□□□□□□□□■□□□□□■□□□□□■□□■■□■■□□■□■□□□□□■□□□□□■□□□□□□□■■□□□□■■■□□■■□□■■□□■□□□■□□□□□□□■■■□□□□□□■□□□■" << endl;
@@ -162,7 +160,7 @@ void displayIntro() {
 }
 
 // 플레이어에게 선택지를 보여주는 함수
-void presentChoices() {
+void PresentChoices() {
     cout << "\n어떻게 할까요?\n";
     cout << "1. 첫번째 길로 간다\n";
     cout << "2. 두번째 길로 간다\n";
@@ -172,11 +170,11 @@ void presentChoices() {
 }
 
 // 플레이어와 몬스터의 전투 함수
-void battle(string monsterName, int monsterHealth, int monsterAttack) {
-    cout << monsterName << "과(와) 전투를 시작합니다!\n";
+void Battle(string monster_name, int monster_health, int monster_attack) {
+    cout << monster_name << "과(와) 전투를 시작합니다!\n";
 
-    while (monsterHealth > 0 && playerHealth > 0) {
-        cout << "\n철수 체력: " << playerHealth << " / " << "몬스터 체력: " << monsterHealth << "\n";
+    while (monster_health > 0 && player_health > 0) {
+        cout << "\n철수 체력: " << player_health << " / " << "몬스터 체력: " << monster_health << "\n";
         cout << "1. 싸운다\n2. 도망친다\n";
         cout << "행동을 선택하세요 (1-2): ";
         int action;
@@ -184,168 +182,163 @@ void battle(string monsterName, int monsterHealth, int monsterAttack) {
 
         if (action == 1) {
             // 싸운다
-            cout << "철수가 " << monsterName << "을(를) 공격합니다! " << monsterName << " 체력 -" << playerAttack << "\n";
-            monsterHealth -= playerAttack;
+            cout << "철수가 " << monster_name << "을(를) 공격합니다! " << monster_name << " 체력 -" << player_attack << "\n";
+            monster_health -= player_attack;
 
-            if (monsterHealth > 0) {
+            if (monster_health > 0) {
                 // 몬스터의 공격
-                cout << monsterName << "이(가) 철수를 공격합니다! 철수 체력 -" << monsterAttack << "\n";
-                playerHealth -= monsterAttack;
+                cout << monster_name << "이(가) 철수를 공격합니다! 철수 체력 -" << monster_attack << "\n";
+                player_health -= monster_attack;
             }
         } else if (action == 2) {
             // 도망친다
-            playerHealth -= 5; // 도망 시 체력 감소
-            cout << "도망치던 도중, " << monsterName << "이(가) 날린 공격에 스쳐 체력이 5 줄었습니다.\n";
-            cout << "현재 체력: " << playerHealth << "\n";
+            player_health -= 5; // 도망 시 체력 감소
+            cout << "도망치던 도중, " << monster_name << "이(가) 날린 공격에 스쳐 체력이 5 줄었습니다.\n";
+            cout << "현재 체력: " << player_health << "\n";
             return; // 도망 성공, 전투 종료
         } else {
             cout << "잘못된 선택입니다. 다시 입력해주세요.\n";
         }
     }
 
-    if (playerHealth <= 0) {
+    if (player_health <= 0) {
         cout << "철수가 쓰러졌습니다. 게임 종료.\n";
-        displayDieArt();
+        DisplayDieArt();
         exit(0);
-    } else if (monsterHealth <= 0) {
-        cout << monsterName << "을(를) 물리쳤습니다!\n";
-        cout << "남은 체력: " << playerHealth << "\n";
+    } else if (monster_health <= 0) {
+        cout << monster_name << "을(를) 물리쳤습니다!\n";
+        cout << "남은 체력: " << player_health << "\n";
     }
 }
 
 
 // 보물상자를 발견했을 때 아이템을 랜덤으로 드랍하는 함수
-// 보물상자를 발견했을 때 아이템을 랜덤으로 드랍하는 함수
-void dropItem(int path) {
-    int itemIndex;
+void DropItem(int path) {
+    int item_index;
     string item;
 
     if (path == 1) {
-        // 첫 번째 길 아이템 리스트
         string items[] = {"피묻은 도끼", "가죽갑옷", "빨간포션"};
-        itemIndex = rand() % 3;
-        item = items[itemIndex];
+        item_index = rand() % 3;
+        item = items[item_index];
     } else if (path == 2) {
-        // 두 번째 길 아이템 리스트
         string items[] = {"날카로운 철검", "빨간포션", "천갑옷"};
-        itemIndex = rand() % 3;
-        item = items[itemIndex];
-    } else if (path == 3) {
-        // 세 번째 길 아이템 리스트
+        item_index = rand() % 3;
+        item = items[item_index];
+    } else {
         string items[] = {"야만의 몽둥이", "빨간포션"};
-        itemIndex = rand() % 2;
-        item = items[itemIndex];
+        item_index = rand() % 2;
+        item = items[item_index];
     }
 
-    // 아이템 획득 및 가방에 추가
     cout << "보물상자에서 " << item << "을(를) 얻었습니다!\n";
-    playerBag.push_back(item);
+    player_bag.push_back(item);
 }
 
 // 가방 내용을 출력하는 함수
-void viewBag() {
-    if (playerBag.empty()) {
+void ViewBag() {
+    if (player_bag.empty()) {
         cout << "가방이 비어 있습니다.\n";
     } else {
         cout << "철수의 가방 내용:\n";
-        for (int i = 0; i < playerBag.size(); i++) {
-            cout << i + 1 << ". " << playerBag[i] << "\n";
+        for (int i = 0; i < player_bag.size(); i++) {
+            cout << i + 1 << ". " << player_bag[i] << "\n";
         }
     }
 }
 
 
 // 플레이어의 선택에 따른 결과를 처리하는 함수
-void processChoice(int choice) {
+void ProcessChoice(int choice) {
     int event = rand() % 4; // 0, 1, 2, 3 중 랜덤 이벤트 선택 -> 선택지가 4개인 3번째 길을 고려하여 수정
     if (choice == 1) {
         // 첫 번째 길: 미노타우르스, 멧돼지, 보물상자
         if (event == 0) {
-            displayMinotaurArt();
+            DisplayMinotaurArt();
             cout << "도끼를 든 미노타우르스가 돌진해옵니다!\n";
             cout << "전투를 시작합니다\n";
-            battle("미노타우르스", 50, 7);
+            Battle("미노타우르스", 50, 7);
         } else if (event == 1) {
-            displayTreasureArt();
+            DisplayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
-            dropItem(1); // 첫 번째 길 아이템 드랍
+            DropItem(1); // 첫 번째 길 아이템 드랍
         } else {
-            displayBoarArt();
+            DisplayBoarArt();
             cout << "야생 멧돼지가 돌진해옵니다!\n";
             cout << "전투를 시작합니다\n";
-            battle("야생 멧돼지", 20, 5);
+            Battle("야생 멧돼지", 20, 5);
         }
     } else if (choice == 2) {
         // 두 번째 길: 해골전사, 마녀, 보물상자
         if (event == 0) {
-            displayWitchArt();
+            DisplayWitchArt();
             cout << "마녀가 당신을 노려봅니다!\n";
             cout << "전투를 시작합니다\n";
-            battle("마녀", 11, 10);
+            Battle("마녀", 11, 10);
         } else if (event == 1) {
-            displayTreasureArt();
+            DisplayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
-            dropItem(2); // 두 번째 길 아이템 드랍
+            DropItem(2); // 두 번째 길 아이템 드랍
         } else {
-            displaySkeletonWarriorArt();
+            DisplaySkeletonWarriorArt();
             cout << "해골전사가 나타났습니다!\n";
             cout << "전투를 시작합니다\n";
-            battle("해골 전사", 15, 7);
+            Battle("해골 전사", 15, 7);
         }
     } else if (choice == 3) {
         // 세 번째 길: 고블린 전사, 궁수, 마법사, 보물상자
         if (event == 0) {
-            displayGoblinWarriorArt();
+            DisplayGoblinWarriorArt();
             cout << "고블린 전사가 나타났습니다!\n";
             cout << "전투를 시작합니다\n";
-            battle("고블린 전사", 20, 5);
+            Battle("고블린 전사", 20, 5);
         } else if (event == 1) {
-            displayGoblinArcherArt();
+            DisplayGoblinArcherArt();
             cout << "고블린 궁수가 당신을 겨누고 있습니다!\n";
             cout << "전투를 시작합니다\n";
-            battle("고블린 궁수", 15, 3);
+            Battle("고블린 궁수", 15, 3);
         } else if (event == 2) {
-            displayGoblinMageArt();
+            DisplayGoblinMageArt();
             cout << "고블린 마법사가 주문을 외우고 있습니다!\n";
             cout << "전투를 시작합니다\n";
-            battle("고블린 마법사", 11, 7);
+            Battle("고블린 마법사", 11, 7);
         } else {
-            displayTreasureArt();
+            DisplayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
-            dropItem(3); // 세 번째 길 아이템 드랍
+            DropItem(3); // 세 번째 길 아이템 드랍
         }
     }
 }
 
-
+// 메인 함수
 int main() {
     int choice;
     srand(time(0));
     // ASCII 아트와 소개 스토리를 출력합니다
-    displayAsciiArt();
-    displayIntro();
+    DisplayAsciiArt();
+    DisplayIntro();
 
     // 올바른 선택이 입력될 때까지 반복
     while (true) {
         // 선택지를 보여주고 플레이어의 입력을 받음
-        presentChoices();
+        PresentChoices();
         cout << "선택을 입력하세요 (0-3): ";
         cin >> choice;
 
         if (choice == 0) {
-            displayDieArt();
+            DisplayDieArt();
             cout << "게임을 종료합니다. 철수는 당신이 끝까지 지켜봐주지 않아 고독사했습니다." << endl;
             break; // 0을 선택하면 게임 종료
         }
 
         if (choice == 9) { // 9번 명령어로 가방 보기
-            viewBag();
+            ViewBag();
             continue;
         }
 
         // 선택이 유효한지 확인
         if (choice >= 1 && choice <= 3) {  // choice가 1, 2, 3 중 하나인지 확인
-            processChoice(choice);         // 유효한 선택이면 해당 선택을 처리
+            ProcessChoice(choice);         // 유효한 선택이면 해당 선택을 처리
         } else {
             cout << "잘못된 선택입니다. 다시 선택해 주세요.\n";  // 잘못된 입력일 때 경고 메시지 출력
         }
