@@ -245,8 +245,6 @@ void EnterHiddenDungeon() {
     cout << "\n대악마 아트록스의 방에 들어갑니다...\n";
     DisplayAtroxArt();
     Battle("대악마 아트록스", ATROX_HEALTH, ATROX_ATTACK);
-    cout << "축하합니다! 대악마 아트록스를 물리치고 던전을 정복했습니다!\n";
-    exit(0);
 }
 
 
@@ -345,10 +343,8 @@ void ProcessChoice(int choice) {
             cout << "보물상자를 발견했습니다.\n";
             DropItem(3); // 세 번째 길 아이템 드랍
         }
-    }
-    if (choice == 4 && hidden_dungeon_unlocked) {
+    } else if (choice == 4 && hidden_dungeon_unlocked) {
         EnterHiddenDungeon();
-        return;
     }
 }
 
