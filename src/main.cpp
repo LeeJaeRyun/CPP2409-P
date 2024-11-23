@@ -8,6 +8,14 @@ using namespace std;
 // 철수의 가방
 vector<string> player_bag;
 
+// 아트록스의 정보
+const int ATROX_HEALTH = 100;
+const int ATROX_ATTACK = 11;
+
+// 히든 던전 관련 변수
+bool hidden_dungeon_unlocked = false;
+int monster_defeat_count = 0; // 물리친 몬스터 수
+
 // 플레이어(철수)의 체력과 공격력
 int player_health = 100;
 int player_attack = 10;
@@ -116,6 +124,19 @@ void DisplayGoblinMageArt() {
     cout << "     /     \\     " << endl;
 }
 
+// 대악마 아트록스의 ASCII 아트를 출력하는 함수
+void DisplayAtroxArt() {
+    cout << "        ,    ,    /\\" << endl;
+    cout << "       /(    Y   ) ) " << endl;
+    cout << "      { \\  ( )  / /  " << endl;
+    cout << "       \\ \\_   _/ /   " << endl;
+    cout << "        \\_/\\_\\__/     " << endl;
+    cout << "        (_  \\  _)     " << endl;
+    cout << "         \\  /  /      " << endl;
+    cout << "          '--'        " << endl;
+    cout << "대악마 아트록스가 당신을 노려봅니다. 그의 존재만으로도 공기가 무겁습니다!\n";
+}
+
 // 사망 메시지 출력 함수
 void DisplayDieArt() {
     cout << "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□■□□□□□□□□□□" << endl;
@@ -165,6 +186,9 @@ void PresentChoices() {
     cout << "1. 첫번째 길로 간다\n";
     cout << "2. 두번째 길로 간다\n";
     cout << "3. 세번째 길로 간다\n";
+    if (hidden_dungeon_unlocked) {
+        cout << "4. 히든 던전: 대악마 아트록스의 방\n";
+    }
     cout << "0. 게임종료\n";
     cout << "9. 가방을 열다\n";
 }
@@ -203,12 +227,26 @@ void Battle(string monster_name, int monster_health, int monster_attack) {
 
     if (player_health <= 0) {
         cout << "철수가 쓰러졌습니다. 게임 종료.\n";
-        DisplayDieArt();
         exit(0);
     } else if (monster_health <= 0) {
         cout << monster_name << "을(를) 물리쳤습니다!\n";
         cout << "남은 체력: " << player_health << "\n";
+        monster_defeat_count++;
+        if (monster_defeat_count >= 5 && !hidden_dungeon_unlocked) {
+            cout << "\n히든 던전이 열렸습니다: 대악마 아트록스의 방!\n";
+            hidden_dungeon_unlocked = true;
+        }
     }
+}
+
+
+// 히든 던전의 전투 함수
+void EnterHiddenDungeon() {
+    cout << "\n대악마 아트록스의 방에 들어갑니다...\n";
+    DisplayAtroxArt();
+    Battle("대악마 아트록스", ATROX_HEALTH, ATROX_ATTACK);
+    cout << "축하합니다! 대악마 아트록스를 물리치고 던전을 정복했습니다!\n";
+    exit(0);
 }
 
 
@@ -308,6 +346,10 @@ void ProcessChoice(int choice) {
             DropItem(3); // 세 번째 길 아이템 드랍
         }
     }
+    if (choice == 4 && hidden_dungeon_unlocked) {
+        EnterHiddenDungeon();
+        return;
+    }
 }
 
 // 메인 함수
@@ -337,7 +379,7 @@ int main() {
         }
 
         // 선택이 유효한지 확인
-        if (choice >= 1 && choice <= 3) {  // choice가 1, 2, 3 중 하나인지 확인
+        if (choice >= 1 && choice <= 4) {  // choice가 1, 2, 3 중 하나인지 확인
             ProcessChoice(choice);         // 유효한 선택이면 해당 선택을 처리
         } else {
             cout << "잘못된 선택입니다. 다시 선택해 주세요.\n";  // 잘못된 입력일 때 경고 메시지 출력
