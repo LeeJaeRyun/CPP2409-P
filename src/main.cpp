@@ -229,8 +229,15 @@ void Battle(string monster_name, int monster_health, int monster_attack) {
         cout << "철수가 쓰러졌습니다. 게임 종료.\n";
         exit(0);
     } else if (monster_health <= 0) {
-        cout << monster_name << "을(를) 물리쳤습니다!\n";
-        cout << "남은 체력: " << player_health << "\n";
+        if (monster_name == "대악마 아트록스"){
+            // 아트록스 처치 후 다르킨의 검 획득
+            cout << "축하합니다! 대악마 아트록스를 물리쳤습니다!\n";
+            cout << "아트록스가 사용했던 '다르킨의 검'을 획득했습니다!\n";
+            player_bag.push_back("다르킨의 검");
+        }else {
+            cout << monster_name << "을(를) 물리쳤습니다!\n";
+            cout << "남은 체력: " << player_health << "\n";
+        }
         monster_defeat_count++;
         if (monster_defeat_count >= 5 && !hidden_dungeon_unlocked) {
             cout << "\n히든 던전이 열렸습니다: 대악마 아트록스의 방!\n";
