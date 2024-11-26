@@ -10,10 +10,15 @@ vector<string> player_bag;
 
 // 아트록스의 정보
 const int ATROX_HEALTH = 100;
-const int ATROX_ATTACK = 11;
+const int ATROX_ATTACK = 0;
+
+// 아무무의 정보
+const int AMUMU_HEALTH = 150;
+const int AMUMU_ATTACK = 0;
 
 // 히든 던전 관련 변수
 bool hidden_dungeon_unlocked = false;
+bool amumu_boss_unlocked = false;
 int monster_defeat_count = 0; // 물리친 몬스터 수
 
 // 플레이어(철수)의 체력과 공격력
@@ -137,6 +142,17 @@ void DisplayAtroxArt() {
     cout << "대악마 아트록스가 당신을 노려봅니다. 그의 존재만으로도 공기가 무겁습니다!\n";
 }
 
+// 슬픈 미라 아무무의 ASCII 아트를 출력하는 함수
+void DisplayAmumuArt() {
+    cout << "    .-\"\"\"-.      " << endl;
+    cout << "   / _   _ \\     " << endl;
+    cout << "  |  ㅠ  ㅠ  |    " << endl;
+    cout << "  |    ^     |    " << endl;
+    cout << "   \\  '-'  /     " << endl;
+    cout << "    '-...-'      " << endl;
+    cout << "슬픈 미라 아무무가 당신을 바라보며 흐느낍니다...\n";
+}
+
 // 사망 메시지 출력 함수
 void DisplayDieArt() {
     cout << "□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□■□□□□□□□□□□" << endl;
@@ -189,37 +205,38 @@ void PresentChoices() {
     if (hidden_dungeon_unlocked) {
         cout << "4. 히든 던전: 대악마 아트록스의 방\n";
     }
+    if (amumu_boss_unlocked) {
+        cout << "5. 슬픈 미라 아무무의 방\n";
+    }
     cout << "0. 게임종료\n";
     cout << "9. 가방을 열다\n";
 }
+
 
 // 플레이어와 몬스터의 전투 함수
 void Battle(string monster_name, int monster_health, int monster_attack) {
     cout << monster_name << "과(와) 전투를 시작합니다!\n";
 
     while (monster_health > 0 && player_health > 0) {
-        cout << "\n철수 체력: " << player_health << " / " << "몬스터 체력: " << monster_health << "\n";
+        cout << "\n철수 체력: " << player_health << " / " << monster_name << " 체력: " << monster_health << "\n";
         cout << "1. 싸운다\n2. 도망친다\n";
         cout << "행동을 선택하세요 (1-2): ";
         int action;
         cin >> action;
 
         if (action == 1) {
-            // 싸운다
             cout << "철수가 " << monster_name << "을(를) 공격합니다! " << monster_name << " 체력 -" << player_attack << "\n";
             monster_health -= player_attack;
 
             if (monster_health > 0) {
-                // 몬스터의 공격
                 cout << monster_name << "이(가) 철수를 공격합니다! 철수 체력 -" << monster_attack << "\n";
                 player_health -= monster_attack;
             }
         } else if (action == 2) {
-            // 도망친다
-            player_health -= 5; // 도망 시 체력 감소
+            player_health -= 5;
             cout << "도망치던 도중, " << monster_name << "이(가) 날린 공격에 스쳐 체력이 5 줄었습니다.\n";
             cout << "현재 체력: " << player_health << "\n";
-            return; // 도망 성공, 전투 종료
+            return;
         } else {
             cout << "잘못된 선택입니다. 다시 입력해주세요.\n";
         }
@@ -229,19 +246,25 @@ void Battle(string monster_name, int monster_health, int monster_attack) {
         cout << "철수가 쓰러졌습니다. 게임 종료.\n";
         exit(0);
     } else if (monster_health <= 0) {
-        if (monster_name == "대악마 아트록스"){
-            // 아트록스 처치 후 다르킨의 검 획득
+        cout << monster_name << "을(를) 물리쳤습니다!\n";
+        monster_defeat_count++; // 물리친 몬스터 수 증가
+        cout << "현재 물리친 몬스터 수: " << monster_defeat_count << "\n";
+
+        if (monster_defeat_count >= 4 && !hidden_dungeon_unlocked) {
+            hidden_dungeon_unlocked = true;
+            cout << "\n히든 던전이 열렸습니다: 대악마 아트록스의 방!\n";
+        }
+
+        if (monster_name == "대악마 아트록스") {
             cout << "축하합니다! 대악마 아트록스를 물리쳤습니다!\n";
             cout << "아트록스가 사용했던 '다르킨의 검'을 획득했습니다!\n";
             player_bag.push_back("다르킨의 검");
-        }else {
-            cout << monster_name << "을(를) 물리쳤습니다!\n";
-            cout << "남은 체력: " << player_health << "\n";
-        }
-        monster_defeat_count++;
-        if (monster_defeat_count >= 5 && !hidden_dungeon_unlocked) {
-            cout << "\n히든 던전이 열렸습니다: 대악마 아트록스의 방!\n";
-            hidden_dungeon_unlocked = true;
+            amumu_boss_unlocked = true; // 아무무 보스 방 잠금 해제
+            cout << "슬픈 미라 아무무의 방이 열렸습니다!\n";
+        } else if (monster_name == "슬픈 미라 아무무") {
+            cout << "축하합니다! 슬픈 미라 아무무를 물리쳤습니다!\n";
+            cout << "철수는 이 던전을 탈출했습니다. 게임 클리어!\n";
+            exit(0); // 게임 종료
         }
     }
 }
@@ -254,6 +277,12 @@ void EnterHiddenDungeon() {
     Battle("대악마 아트록스", ATROX_HEALTH, ATROX_ATTACK);
 }
 
+// 슬픈 미라 아무무의 방 진입 함수
+void EnterAmumuBossRoom() {
+    cout << "\n슬픈 미라 아무무의 방에 들어갑니다...\n";
+    DisplayAmumuArt();
+    Battle("슬픈 미라 아무무", AMUMU_HEALTH, AMUMU_ATTACK);
+}
 
 // 보물상자를 발견했을 때 아이템을 랜덤으로 드랍하는 함수
 void DropItem(int path) {
@@ -352,6 +381,8 @@ void ProcessChoice(int choice) {
         }
     } else if (choice == 4 && hidden_dungeon_unlocked) {
         EnterHiddenDungeon();
+    } else if (choice == 5 && amumu_boss_unlocked) {
+        EnterAmumuBossRoom();
     }
 }
 
@@ -359,33 +390,31 @@ void ProcessChoice(int choice) {
 int main() {
     int choice;
     srand(time(0));
-    // ASCII 아트와 소개 스토리를 출력합니다
     DisplayAsciiArt();
     DisplayIntro();
 
-    // 올바른 선택이 입력될 때까지 반복
     while (true) {
-        // 선택지를 보여주고 플레이어의 입력을 받음
         PresentChoices();
-        cout << "선택을 입력하세요 (0-3): ";
+        cout << "선택을 입력하세요 (0-5): ";
         cin >> choice;
 
         if (choice == 0) {
             DisplayDieArt();
             cout << "게임을 종료합니다. 철수는 당신이 끝까지 지켜봐주지 않아 고독사했습니다." << endl;
-            break; // 0을 선택하면 게임 종료
+            break;
         }
 
-        if (choice == 9) { // 9번 명령어로 가방 보기
+        if (choice == 9) {
             ViewBag();
             continue;
         }
 
-        // 선택이 유효한지 확인
-        if (choice >= 1 && choice <= 4) {  // choice가 1, 2, 3 중 하나인지 확인
-            ProcessChoice(choice);         // 유효한 선택이면 해당 선택을 처리
+        cout << "현재 물리친 몬스터 수: " << monster_defeat_count << "\n";
+
+        if (choice >= 1 && choice <= 3 || (choice == 4 && hidden_dungeon_unlocked) || (choice == 5 && amumu_boss_unlocked)) {
+            ProcessChoice(choice);
         } else {
-            cout << "잘못된 선택입니다. 다시 선택해 주세요.\n";  // 잘못된 입력일 때 경고 메시지 출력
+            cout << "잘못된 선택입니다. 다시 선택해 주세요.\n";
         }
     }
 
