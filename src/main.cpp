@@ -10,11 +10,11 @@ vector<string> player_bag;
 
 // 아트록스의 정보
 const int ATROX_HEALTH = 100;
-const int ATROX_ATTACK = 0;
+const int ATROX_ATTACK = 11;
 
 // 아무무의 정보
 const int AMUMU_HEALTH = 150;
-const int AMUMU_ATTACK = 0;
+const int AMUMU_ATTACK = 15;
 
 // 히든 던전 관련 변수
 bool hidden_dungeon_unlocked = false;
@@ -24,20 +24,6 @@ int monster_defeat_count = 0; // 물리친 몬스터 수
 // 플레이어(철수)의 체력과 공격력
 int player_health = 100;
 int player_attack = 10;
-
-// 던전에서 잠든 철수의 ASCII 아트를 출력하는 함수
-void DisplayAsciiArt() {
-    cout << "        zZZ...        " << endl;
-    cout << "      .-''''''''-.    " << endl;
-    cout << "    .'            '.  " << endl;
-    cout << "   /                \\ " << endl;
-    cout << "  |   ~~~      ~~~   |" << endl;
-    cout << "  |   -            - |" << endl;
-    cout << "  |      '.___.'     |" << endl;
-    cout << "   \\                / " << endl;
-    cout << "    '.            .'  " << endl;
-    cout << "      '-........-'" << endl;
-}
 
 // 미노타우르스의 ASCII 아트를 출력하는 함수
 void DisplayMinotaurArt() {
@@ -185,6 +171,16 @@ void DisplayIntro() {
     cout << "□□□■□□□□□□□□□□□■□□□□□□□□□□□□□□□□■□■□□□□□□□□□□□■□□□□□□□■■■■■■■□□□□□□□□□□□□■□□□□■■□□□□□■□□□■□□□□□□□□■" << endl;
     cout << "□□□■□□□□□□□□□□□■□□□□□□□□□□□□□□□□■□■□□□□□□□□□□□■□□□□□□□■□□□□□□□□□□□□□□□□□□■□□□□■■□□□□□■□□□□□□□□□□□□■" << endl;
     cout << "□□□■■■■■■■■□□□□■■■■■■■■□□□□□□□□□■□■□□□□□□□□□□□■□□□□□□□■■■■■■■■□□□□□□□□□□□■□□□□■■■■■■■■□□□□□□□□□□□□■" << endl;
+    cout << "        zZZ...        " << endl;
+    cout << "      .-''''''''-.    " << endl;
+    cout << "    .'            '.  " << endl;
+    cout << "   /                \\ " << endl;
+    cout << "  |   ~~~      ~~~   |" << endl;
+    cout << "  |   -            - |" << endl;
+    cout << "  |      '.___.'     |" << endl;
+    cout << "   \\                / " << endl;
+    cout << "    '.            .'  " << endl;
+    cout << "      '-........-'" << endl;
     cout << "한밤중, 코딩에 집중하던 철수는 졸음에 못 이겨 그만 책상에 고꾸라져 잠이 들고 말았습니다.\n";
     cout << "얼마나 시간이 흘렀을까, 깨달아 보니 낯선 돌바닥 위. 주변은 차갑고 축축한 공기로 가득 찼습니다.\n";
     cout << "눈앞엔 고대 유적 같은 돌기둥들이 우뚝 서 있고, 어둠 속에서 흐릿한 불빛이 깜박입니다.\n";
@@ -390,7 +386,6 @@ void ProcessChoice(int choice) {
 int main() {
     int choice;
     srand(time(0));
-    DisplayAsciiArt();
     DisplayIntro();
 
     while (true) {
