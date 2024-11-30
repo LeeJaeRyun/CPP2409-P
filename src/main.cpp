@@ -538,7 +538,7 @@ int main() {
 
     while (true) {
         PresentChoices();
-        cout << "선택을 입력하세요 (0-5): ";
+        cout << "선택을 입력하세요 (0-5, 9): ";
         cin >> choice;
 
         if (choice == 0) {
