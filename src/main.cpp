@@ -344,6 +344,66 @@ void PresentChoices() {
     cout << "9. 가방을 열다\n";
 }
 
+// 아이템을 사용하는 함수
+void UseItem() {
+    if (player_bag.empty()) {
+        cout << "가방에 사용할 아이템이 없습니다.\n";
+        return;
+    }
+
+    cout << "사용할 아이템을 선택하세요:\n";
+    for (int i = 0; i < player_bag.size(); i++) {
+        cout << i + 1 << ". " << player_bag[i] << "\n";
+    }
+    cout << "0. 취소\n";
+    cout << "선택을 입력하세요: ";
+    int item_choice;
+    cin >> item_choice;
+
+    if (item_choice == 0) {
+        cout << "아이템 사용을 취소했습니다.\n";
+        return;
+    }
+
+    if (item_choice < 1 || item_choice > player_bag.size()) {
+        cout << "잘못된 선택입니다. 다시 시도해주세요.\n";
+        return;
+    }
+
+    string selected_item = player_bag[item_choice - 1];
+    if (selected_item == "빨간포션") {
+        player_health += 20;
+        cout << "빨간포션을 사용했습니다. 체력이 20 증가했습니다. 현재 체력: " << player_health << "\n";
+    }
+    else if (selected_item == "피묻은 도끼") {
+        player_attack += 5;
+        cout << "피묻은 도끼를 사용했습니다. 공격력이 5 증가했습니다. 현재 공격력: " << player_attack << "\n";
+    }
+    else if (selected_item == "날카로운 철검") {
+        player_attack += 7;
+        cout << "날카로운 철검을 사용했습니다. 공격력이 7 증가했습니다. 현재 공격력: " << player_attack << "\n";
+    }
+    else if (selected_item == "야만의 몽둥이") {
+        player_attack += 6;
+        cout << "야만의 몽둥이를 사용했습니다. 공격력이 6 증가했습니다. 현재 공격력: " << player_attack << "\n";
+    }
+    else if (selected_item == "천갑옷") {
+        player_health += 25;
+        cout << "천갑옷을 사용했습니다. 체력이 25 증가했습니다. 현재 체력: " << player_health << "\n";
+    }
+    else if (selected_item == "가죽갑옷") {
+        player_health += 30;
+        cout << "가죽갑옷을 사용했습니다. 체력이 30 증가했습니다. 현재 체력: " << player_health << "\n";
+    }
+    else {
+        cout << "이 아이템은 사용할 수 없습니다.\n";
+        return;
+    }
+
+    // 사용한 아이템을 가방에서 제거
+    player_bag.erase(player_bag.begin() + (item_choice - 1));
+}
+
 
 // 플레이어와 몬스터의 전투 함수
 void Battle(string monster_name, int monster_health, int monster_attack) {
@@ -451,7 +511,7 @@ void DropItem(int path) {
     player_bag.push_back(item);
 }
 
-// 가방 내용을 출력하는 함수
+// 가방 내용을 출력하고 아이템을 사용할 수 있는 옵션을 제공하는 함수
 void ViewBag() {
     if (player_bag.empty()) {
         cout << "가방이 비어 있습니다.\n";
@@ -459,6 +519,12 @@ void ViewBag() {
         cout << "철수의 가방 내용:\n";
         for (int i = 0; i < player_bag.size(); i++) {
             cout << i + 1 << ". " << player_bag[i] << "\n";
+        }
+        cout << "\n아이템을 사용하시겠습니까? (y/n): ";
+        char use_choice;
+        cin >> use_choice;
+        if (use_choice == 'y' || use_choice == 'Y') {
+            UseItem();
         }
     }
 }
