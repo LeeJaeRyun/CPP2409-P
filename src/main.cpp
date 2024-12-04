@@ -371,6 +371,7 @@ void UseItem() {
     }
 
     string selected_item = player_bag[item_choice - 1];
+
     if (selected_item == "빨간포션") {
         player_health += 20;
         cout << "빨간포션을 사용했습니다. 체력이 20 증가했습니다. 현재 체력: " << player_health << "\n";
@@ -394,6 +395,28 @@ void UseItem() {
     else if (selected_item == "가죽갑옷") {
         player_health += 30;
         cout << "가죽갑옷을 사용했습니다. 체력이 30 증가했습니다. 현재 체력: " << player_health << "\n";
+    }
+    else if (selected_item == "다르킨의 검") {
+        // 사용 여부 확인
+        cout << "다르킨의 검을 사용할 경우 체력이 크게 줄어들수있습니다. 그래도 사용하시겠습니까? (y/n): ";
+        char confirm;
+        cin >> confirm;
+
+        if (confirm == 'y' || confirm == 'Y') {
+            player_attack += 20;
+            player_health -= 50;
+            cout << "다르킨의 검을 사용했습니다. 공격력이 20 증가하고 체력이 50 감소했습니다.\n";
+            cout << "현재 공격력: " << player_attack << ", 현재 체력: " << player_health << "\n";
+
+            if (player_health <= 0) {
+                cout << "다르킨의 검을 사용한 후 체력이 모두 소진되었습니다. 게임 종료.\n";
+                exit(0);
+            }
+        }
+        else {
+            cout << "다르킨의 검 사용을 취소했습니다.\n";
+            return;
+        }
     }
     else {
         cout << "이 아이템은 사용할 수 없습니다.\n";
