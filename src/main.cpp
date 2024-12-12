@@ -10,11 +10,11 @@ vector<string> player_bag;
 
 // 아트록스의 정보
 const int ATROX_HEALTH = 100;
-const int ATROX_ATTACK = 10;
+const int ATROX_ATTACK = 15;
 
 // 아무무의 정보
 const int AMUMU_HEALTH = 150;
-const int AMUMU_ATTACK = 15;
+const int AMUMU_ATTACK = 20;
 
 // 히든 던전 관련 변수
 bool hidden_dungeon_unlocked = false;
