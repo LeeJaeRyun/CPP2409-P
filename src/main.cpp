@@ -600,7 +600,7 @@ void DropItem(int path) {
     } else if (item == "야만의 몽둥이") {
         DisplayMaceArt();
     }
-    cout << "보물상자에서 " << item << "을(를) 얻었습니다!\n";
+    cout << "보물상자가 천천히 열리며 그 속에서 " << item << "을(를) 발견했습니다!\n";
     player_bag.push_back(item);
 }
 
