@@ -715,32 +715,41 @@ void ProcessChoice(int choice) {
 
 // 메인 함수
 int main() {
-    int choice;
+    string input; // 사용자의 입력을 문자열로 받음
     srand(time(0));
     DisplayIntro();
 
     while (true) {
         PresentChoices();
         cout << "선택을 입력하세요 (0-5, 9): ";
-        cin >> choice;
+        cin >> input;
 
-        if (choice == 0) {
-            DisplayDieArt();
-            cout << "게임을 종료합니다. 철수는 탐험을 포기하기로 했습니다. 다음엔 더 강해진 모습으로 돌아올거죠?" << endl;
-            break;
-        }
+        // 입력값 유효성 검사
+        try {
+            int choice = stoi(input); // 문자열을 정수로 변환
 
-        if (choice == 9) {
-            ViewBag();
-            continue;
-        }
+            if (choice == 0) {
+                DisplayDieArt();
+                cout << "게임을 종료합니다. 철수는 탐험을 포기하기로 했습니다. 다음엔 더 강해진 모습으로 돌아올거죠?" << endl;
+                break;
+            }
 
-        cout << "현재 물리친 몬스터 수: " << monster_defeat_count << "\n";
+            if (choice == 9) {
+                ViewBag();
+                continue;
+            }
 
-        if (choice >= 1 && choice <= 3 || (choice == 4 && hidden_dungeon_unlocked) || (choice == 5 && amumu_boss_unlocked)) {
-            ProcessChoice(choice);
-        } else {
-            cout << "잘못된 선택입니다. 다시 선택해 주세요.\n";
+            cout << "현재 물리친 몬스터 수: " << monster_defeat_count << "\n";
+
+            if (choice >= 1 && choice <= 3 || (choice == 4 && hidden_dungeon_unlocked) || (choice == 5 && amumu_boss_unlocked)) {
+                ProcessChoice(choice);
+            } else {
+                cout << "잘못된 선택입니다. 다시 선택해 주세요.\n";
+            }
+        } catch (invalid_argument& e) {
+            cout << "잘못된 입력입니다. 숫자를 입력해 주세요.\n";
+        } catch (out_of_range& e) {
+            cout << "입력 값이 범위를 벗어났습니다. 다시 입력해 주세요.\n";
         }
     }
 
