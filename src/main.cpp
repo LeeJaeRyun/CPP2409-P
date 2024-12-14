@@ -25,6 +25,11 @@ int monster_defeat_count = 0; // 물리친 몬스터 수
 int player_health = 100;
 int player_attack = 10;
 
+// 플레이어 레벨링 관련 변수
+int player_level = 1;
+int player_exp = 0;
+int next_level_exp = 100; // 다음 레벨까지 필요한 경험치
+
 // 아이템의 ASCII 아트 함수들
 void DisplayAxeArt() {
     cout << "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" << endl;
@@ -494,9 +499,20 @@ void UseItem() {
     }
 }
 
+// 레벨업 체크 함수
+void CheckLevelUp() {
+    while (player_exp >= next_level_exp) {
+        player_exp -= next_level_exp; // 초과된 경험치를 다음 레벨로 넘김
+        player_level++;
+        next_level_exp += 50; // 레벨업 시 다음 레벨까지 필요한 경험치 증가
+        player_attack += 5; // 레벨업 보상: 공격력 증가
+        player_health += 20; // 레벨업 보상: 체력 증가
+        cout << "\n축하합니다! 레벨 " << player_level << "로 올라섰습니다!\n";
+        cout << "공격력이 5 증가하여 " << player_attack << "이(가) 되었고, 체력이 20 증가하여 " << player_health << "이(가) 되었습니다.\n";
+    }
+}
 
-
-// 플레이어와 몬스터의 전투 함수
+// 플레이어와 몬스터의 전투 함수 (경험치 획득 추가)
 void Battle(string monster_name, int monster_health, int monster_attack) {
     cout << monster_name << "과(와) 전투를 시작합니다!\n";
 
@@ -532,6 +548,14 @@ void Battle(string monster_name, int monster_health, int monster_attack) {
         cout << monster_name << "을(를) 물리쳤습니다!\n";
         monster_defeat_count++; // 물리친 몬스터 수 증가
         cout << "현재 물리친 몬스터 수: " << monster_defeat_count << "\n";
+
+        // 경험치 획득
+        int exp_gained = rand() % 20; //랜덤 경험치
+        player_exp += exp_gained;
+        cout << "경험치 " << exp_gained << "을(를) 획득했습니다! 현재 경험치: " << player_exp << " / " << next_level_exp << "\n";
+
+        // 레벨업 확인
+        CheckLevelUp();
 
         if (monster_defeat_count >= 4 && !hidden_dungeon_unlocked) {
             hidden_dungeon_unlocked = true;
