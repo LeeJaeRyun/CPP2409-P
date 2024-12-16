@@ -445,12 +445,12 @@ void UseItem() {
             cout << "피묻은 도끼를 사용했습니다. 공격력이 5 증가했습니다. 현재 공격력: " << player_attack << "\n";
         }
         else if (selected_item == "날카로운 철검") {
-            player_attack += 7;
-            cout << "날카로운 철검을 사용했습니다. 공격력이 7 증가했습니다. 현재 공격력: " << player_attack << "\n";
+            player_attack += 4;
+            cout << "날카로운 철검을 사용했습니다. 공격력이 4 증가했습니다. 현재 공격력: " << player_attack << "\n";
         }
         else if (selected_item == "야만의 몽둥이") {
-            player_attack += 6;
-            cout << "야만의 몽둥이를 사용했습니다. 공격력이 6 증가했습니다. 현재 공격력: " << player_attack << "\n";
+            player_attack += 3;
+            cout << "야만의 몽둥이를 사용했습니다. 공격력이 3 증가했습니다. 현재 공격력: " << player_attack << "\n";
         }
         else if (selected_item == "천갑옷") {
             player_health += 25;
