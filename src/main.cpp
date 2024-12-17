@@ -398,7 +398,7 @@ void PresentChoices() {
         cout << "4. 히든 던전: 대악마 아트록스의 방\n";
     }
     if (amumu_boss_unlocked) {
-        cout << "5. 슬픈 미라 아무무의 방\n";
+        cout << "5. 보스 던전: 슬픈 미라 아무무의 방\n";
     }
     cout << "0. 게임종료\n";
     cout << "9. 가방을 열다\n";
@@ -568,7 +568,7 @@ void Battle(string monster_name, int monster_health, int monster_attack) {
             cout << "아트록스가 사용했던 '다르킨의 검'을 획득했습니다!\n";
             player_bag.push_back("다르킨의 검");
             amumu_boss_unlocked = true; // 아무무 보스 방 잠금 해제
-            cout << "슬픈 미라 아무무의 방이 열렸습니다!\n";
+            cout << "보스 던전 : 슬픈 미라 아무무의 방이 열렸습니다!\n";
         } else if (monster_name == "슬픈 미라 아무무") {
             cout << "축하합니다! 슬픈 미라 아무무를 물리쳤습니다!\n";
             cout << "철수는 이 던전을 탈출했습니다. 게임 클리어!\n";
