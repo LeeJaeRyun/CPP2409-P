@@ -30,6 +30,12 @@ int player_level = 1;
 int player_exp = 0;
 int next_level_exp = 100; // 다음 레벨까지 필요한 경험치
 
+//아이템 배열 전역 상수 정의로 중복 선언 방지
+const vector<string> PATH_1_ITEMS = {"피묻은 도끼", "가죽갑옷", "빨간포션"};
+const vector<string> PATH_2_ITEMS = {"날카로운 철검", "빨간포션", "천갑옷"};
+const vector<string> PATH_3_ITEMS = {"야만의 몽둥이", "빨간포션"};
+
+
 // 아이템의 ASCII 아트 함수들
 void DisplayAxeArt() {
     cout << "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" << endl;
