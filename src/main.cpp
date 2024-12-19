@@ -605,17 +605,11 @@ void DropItem(int path) {
     string item;
 
     if (path == 1) {
-        string items[] = {"피묻은 도끼", "가죽갑옷", "빨간포션"};
-        item_index = rand() % 3;
-        item = items[item_index];
+        item = PATH_1_ITEMS[rand() % PATH_1_ITEMS.size()];
     } else if (path == 2) {
-        string items[] = {"날카로운 철검", "빨간포션", "천갑옷"};
-        item_index = rand() % 3;
-        item = items[item_index];
+        item = PATH_2_ITEMS[rand() % PATH_2_ITEMS.size()];
     } else {
-        string items[] = {"야만의 몽둥이", "빨간포션"};
-        item_index = rand() % 2;
-        item = items[item_index];
+        item = PATH_3_ITEMS[rand() % PATH_3_ITEMS.size()];
     }
     if (item == "피묻은 도끼") {
         DisplayAxeArt();
