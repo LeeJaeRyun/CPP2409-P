@@ -673,7 +673,7 @@ void ProcessChoice(int choice) {
             DisplayWitchArt();
             cout << "마녀가 당신을 노려봅니다!\n";
             cout << "전투를 시작합니다\n";
-            Battle("마녀", 11, 10);
+            Battle("마녀", 24, 10);
         } else if (event == 1) {
             DisplayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
@@ -690,17 +690,17 @@ void ProcessChoice(int choice) {
             DisplayGoblinWarriorArt();
             cout << "고블린 전사가 나타났습니다!\n";
             cout << "전투를 시작합니다\n";
-            Battle("고블린 전사", 20, 5);
+            Battle("고블린 전사", 30, 5);
         } else if (event == 1) {
             DisplayGoblinArcherArt();
             cout << "고블린 궁수가 당신을 겨누고 있습니다!\n";
             cout << "전투를 시작합니다\n";
-            Battle("고블린 궁수", 15, 3);
+            Battle("고블린 궁수", 17, 3);
         } else if (event == 2) {
             DisplayGoblinMageArt();
             cout << "고블린 마법사가 주문을 외우고 있습니다!\n";
             cout << "전투를 시작합니다\n";
-            Battle("고블린 마법사", 11, 7);
+            Battle("고블린 마법사", 14, 7);
         } else {
             DisplayTreasureArt();
             cout << "보물상자를 발견했습니다.\n";
