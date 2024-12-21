@@ -665,7 +665,7 @@ void ProcessChoice(int choice) {
             DisplayBoarArt();
             cout << "야생 멧돼지가 돌진해옵니다!\n";
             cout << "전투를 시작합니다\n";
-            Battle("야생 멧돼지", 20, 5);
+            Battle("야생 멧돼지", 30, 5);
         }
     } else if (choice == 2) {
         // 두 번째 길: 해골전사, 마녀, 보물상자
@@ -682,7 +682,7 @@ void ProcessChoice(int choice) {
             DisplaySkeletonWarriorArt();
             cout << "해골전사가 나타났습니다!\n";
             cout << "전투를 시작합니다\n";
-            Battle("해골 전사", 15, 7);
+            Battle("해골 전사", 30, 7);
         }
     } else if (choice == 3) {
         // 세 번째 길: 고블린 전사, 궁수, 마법사, 보물상자
@@ -695,7 +695,7 @@ void ProcessChoice(int choice) {
             DisplayGoblinArcherArt();
             cout << "고블린 궁수가 당신을 겨누고 있습니다!\n";
             cout << "전투를 시작합니다\n";
-            Battle("고블린 궁수", 17, 3);
+            Battle("고블린 궁수", 20, 3);
         } else if (event == 2) {
             DisplayGoblinMageArt();
             cout << "고블린 마법사가 주문을 외우고 있습니다!\n";
